@@ -6,10 +6,10 @@ import fu.se.recruitment_system.dto.JobPostResponse;
 import fu.se.recruitment_system.dto.OrderResponse;
 import fu.se.recruitment_system.dto.ServicePackageResponse;
 import fu.se.recruitment_system.dto.SubscriptionResponse;
-import fu.se.recruitment_system.service.EntitlementService;
 import fu.se.recruitment_system.service.JobPostService;
 import fu.se.recruitment_system.service.OrderService;
 import fu.se.recruitment_system.service.ServicePackageService;
+import fu.se.recruitment_system.service.SubscriptionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,17 +30,17 @@ public class ServicesCommerceController {
     private final ServicePackageService packageService;
     private final OrderService orderService;
     private final JobPostService jobPostService;
-    private final EntitlementService entitlementService;
+    private final SubscriptionService subscriptionService;
 
     public ServicesCommerceController(
             ServicePackageService packageService,
             OrderService orderService,
             JobPostService jobPostService,
-            EntitlementService entitlementService) {
+            SubscriptionService subscriptionService) {
         this.packageService = packageService;
         this.orderService = orderService;
         this.jobPostService = jobPostService;
-        this.entitlementService = entitlementService;
+        this.subscriptionService = subscriptionService;
     }
 
     @GetMapping("/packages")
@@ -79,7 +79,7 @@ public class ServicesCommerceController {
     @GetMapping("/subscriptions")
     public List<SubscriptionResponse> getSubscriptions(
             @RequestHeader("X-Recruiter-Id") Long recruiterId) {
-        return entitlementService.getActiveSubscriptions(recruiterId);
+        return subscriptionService.getActiveSubscriptions(recruiterId);
     }
 
     @GetMapping("/orders")

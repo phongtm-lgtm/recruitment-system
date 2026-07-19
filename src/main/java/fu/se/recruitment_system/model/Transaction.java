@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PaymentTransaction {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class PaymentTransaction {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
-    private ServiceOrder order;
+    private Order order;
 
     @Column(name = "vnp_txn_ref", length = 100)
     private String vnpTxnRef;

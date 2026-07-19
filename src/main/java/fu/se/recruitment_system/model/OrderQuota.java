@@ -34,7 +34,7 @@ public class OrderQuota {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
-    private ServiceOrder order;
+    private Order order;
 
     @Column(name = "post_left", nullable = false)
     private int postLeft;

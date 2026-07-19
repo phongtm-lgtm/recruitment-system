@@ -1,56 +1,40 @@
 package fu.se.recruitment_system.service;
 
-import fu.se.recruitment_system.dto.SubscriptionResponse;
-import fu.se.recruitment_system.model.OrderQuota;
-import fu.se.recruitment_system.model.ServiceOrder;
-import fu.se.recruitment_system.repository.OrderQuotaRepository;
+import fu.se.recruitment_system.model.Order;
+import fu.se.recruitment_system.model.enums.BenefitType;
+import fu.se.recruitment_system.service.strategy.BenefitActivationStrategy;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EntitlementService {
-    private final OrderQuotaRepository quotaRepository;
-    private final JobPostService jobPostService;
+    private final Map<BenefitType, BenefitActivationStrategy> strategies;
 
-    public EntitlementService(OrderQuotaRepository quotaRepository, JobPostService jobPostService) {
-        this.quotaRepository = quotaRepository;
-        this.jobPostService = jobPostService;
+    public EntitlementService(List<BenefitActivationStrategy> strategies) {
+        Map<BenefitType, BenefitActivationStrategy> registry = new EnumMap<>(BenefitType.class);
+        for (BenefitActivationStrategy strategy : strategies) {
+            BenefitActivationStrategy duplicate = registry.put(strategy.supportedType(), strategy);
+            if (duplicate != null) {
+                throw new IllegalStateException(
+                        "Multiple benefit activation strategies support " + strategy.supportedType());
+            }
+        }
+        this.strategies = Map.copyOf(registry);
     }
 
-    @Transactional(readOnly = true)
-    public List<SubscriptionResponse> getActiveSubscriptions(Long recruiterId) {
-        return quotaRepository
-                .findByOrderRecruiterIdAndExpiredAtAfterOrderByExpiredAtAsc(recruiterId, LocalDateTime.now())
-                .stream()
-                .map(quota -> new SubscriptionResponse(
-                        quota.getOrder().getId(),
-                        quota.getOrder().getServicePackage().getPackageName(),
-                        quota.getPostLeft(),
-                        quota.getExpiredAt()))
-                .toList();
-    }
+    public void activate(Order order) {
+        BenefitType benefitType = order.getBenefitType();
+        BenefitActivationStrategy strategy = strategies.get(benefitType);
+        if (strategy == null) {
+            throw new IllegalStateException("No benefit activation strategy supports " + benefitType);
+        }
 
-    @Transactional
-    public void activateBenefit(ServiceOrder order) {
         LocalDateTime expiredAt = LocalDateTime.now()
                 .plusDays(order.getServicePackage().getDurationDays());
-
-        if (order.getJobPost() != null) {
-            jobPostService.activateFeaturedJob(order.getJobPost(), expiredAt);
-            return;
-        }
-
-        if (quotaRepository.findByOrderId(order.getId()).isPresent()) {
-            return;
-        }
-
-        OrderQuota quota = new OrderQuota();
-        quota.setOrder(order);
-        quota.setPostLeft(order.getServicePackage().getQuota());
-        quota.setExpiredAt(expiredAt);
-        quotaRepository.save(quota);
+        strategy.activate(order, expiredAt);
     }
 }

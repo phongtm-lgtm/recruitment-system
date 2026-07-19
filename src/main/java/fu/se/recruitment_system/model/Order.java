@@ -1,6 +1,7 @@
 package fu.se.recruitment_system.model;
 
-import fu.se.recruitment_system.model.enums.ServiceOrderStatus;
+import fu.se.recruitment_system.model.enums.BenefitType;
+import fu.se.recruitment_system.model.enums.OrderStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -23,13 +24,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "OrderEntity")
 @Table(name = "service_orders")
 @Check(name = "chk_service_orders_amount", constraints = "amount >= 0")
 @Getter
 @Setter
 @NoArgsConstructor
-public class ServiceOrder {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,13 +48,17 @@ public class ServiceOrder {
     @JoinColumn(name = "job_post_id")
     private JobPost jobPost;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "benefit_type", nullable = false, length = 30)
+    private BenefitType benefitType;
+
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @ColumnDefault("'PENDING'")
-    private ServiceOrderStatus status = ServiceOrderStatus.PENDING;
+    private OrderStatus status = OrderStatus.PENDING;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

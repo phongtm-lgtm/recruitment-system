@@ -10,4 +10,8 @@ public interface ServicePackageRepository extends JpaRepository<ServicePackage, 
     List<ServicePackage> findByActiveTrueOrderByPriceAsc();
 
     Optional<ServicePackage> findByIdAndActiveTrue(Long id);
+
+    boolean existsByPackageName(String packageName);
+
+    boolean existsByPackageNameAndIdNot(String packageName, Long id);
 }

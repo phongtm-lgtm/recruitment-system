@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.model.enums;
 
-public enum ServiceOrderStatus {
+public enum OrderStatus {
     PENDING,
     PAID,
     CANCELLED

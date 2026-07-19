@@ -5,12 +5,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
-public class VNPayGateway {
+public class VNPayGateway implements PaymentGateway {
+    @Override
     public String createPaymentUrl(Transaction transaction) {
         return UriComponentsBuilder.fromPath("/api/payments/demo-return")
                 .queryParam("vnpTxnRef", transaction.getVnpTxnRef())
                 .queryParam("success", true)
                 .build()
                 .toUriString();
+    }
+
+    @Override
+    public boolean verifyCallback(String transactionReference, boolean success) {
+        return transactionReference != null && !transactionReference.isBlank();
     }
 }

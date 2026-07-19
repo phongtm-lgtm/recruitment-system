@@ -25,7 +25,7 @@ public class PaymentService {
     private final OrderRepository orderRepository;
     private final OrderService orderService;
     private final EntitlementService entitlementService;
-    private final VNPayGateway gatewayAdapter;
+    private final PaymentGateway paymentGateway;
 
     @Transactional
     public PaymentResponse createPayment(Long recruiterId, Long orderId) {
@@ -40,7 +40,7 @@ public class PaymentService {
             throw new ResponseStatusException(CONFLICT, "Payment transaction is already completed");
         }
 
-        return toResponse(transaction, gatewayAdapter.createPaymentUrl(transaction));
+        return toResponse(transaction, paymentGateway.createPaymentUrl(transaction));
     }
 
     @Transactional
@@ -50,6 +50,10 @@ public class PaymentService {
 
         if (transaction.getStatus() != PaymentStatus.PENDING) {
             return toResponse(transaction, null);
+        }
+
+        if (!paymentGateway.verifyCallback(transactionReference, success)) {
+            throw new ResponseStatusException(CONFLICT, "Invalid payment callback");
         }
 
         Order order = transaction.getOrder();

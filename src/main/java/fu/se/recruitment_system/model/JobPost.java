@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.model;
 
-import fu.se.recruitment_system.model.enums.JobPostStatus;
+import fu.se.recruitment_system.enums.JobPostStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

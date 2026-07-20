@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.model;
 
-import fu.se.recruitment_system.model.enums.CategoryType;
+import fu.se.recruitment_system.enums.CategoryType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

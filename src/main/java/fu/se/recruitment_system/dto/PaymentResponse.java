@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.dto;
 
-import fu.se.recruitment_system.model.enums.PaymentStatus;
+import fu.se.recruitment_system.enums.PaymentStatus;
 
 public record PaymentResponse(
         Long transactionId,

@@ -1,4 +1,4 @@
-package fu.se.recruitment_system.model.enums;
+package fu.se.recruitment_system.enums;
 
 public enum OrderStatus {
     PENDING,

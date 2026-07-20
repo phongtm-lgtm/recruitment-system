@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.dto;
 
-import fu.se.recruitment_system.model.enums.JobPostStatus;
+import fu.se.recruitment_system.enums.JobPostStatus;
 
 import java.time.LocalDateTime;
 

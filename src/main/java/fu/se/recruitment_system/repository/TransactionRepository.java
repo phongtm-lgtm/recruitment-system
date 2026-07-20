@@ -1,7 +1,7 @@
 package fu.se.recruitment_system.repository;
 
 import fu.se.recruitment_system.model.Transaction;
-import fu.se.recruitment_system.model.enums.PaymentStatus;
+import fu.se.recruitment_system.enums.PaymentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

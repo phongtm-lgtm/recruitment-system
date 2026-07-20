@@ -1,5 +1,6 @@
 package fu.se.recruitment_system.repository;
 
+import fu.se.recruitment_system.enums.OrderStatus;
 import fu.se.recruitment_system.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +20,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     long countByServicePackageId(Long packageId);
 
-    long countByStatusAndCreatedAtBetween(fu.se.recruitment_system.model.enums.OrderStatus status, LocalDateTime fromDate, LocalDateTime toDate);
+    long countByStatusAndCreatedAtBetween(OrderStatus status, LocalDateTime fromDate, LocalDateTime toDate);
 
     @Query(value = "select coalesce(sum(amount), 0) from service_orders where status = 'PAID' and created_at between :fromDate and :toDate", nativeQuery = true)
     BigDecimal sumPaidOrderAmount(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate);

@@ -30,4 +30,8 @@ public class AdminAuthorizationService {
     public void verifyAnalyticsPermission(Long adminId) {
         verifySystemAdmin(adminId);
     }
+
+    public void verifyMasterDataPermission(Long adminId) {
+        verifySystemAdmin(adminId);
+    }
 }

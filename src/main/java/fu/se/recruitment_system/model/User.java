@@ -47,7 +47,8 @@ public class User {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20,
+            columnDefinition = "ENUM('JOB_SEEKER','RECRUITER','MODERATOR','ADMIN')")
     private UserRole role;
 
     @Enumerated(EnumType.STRING)

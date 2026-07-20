@@ -3,6 +3,6 @@ package fu.se.recruitment_system.model.enums;
 public enum UserRole {
     JOB_SEEKER,
     RECRUITER,
-    MODERATOR,
-    ADMIN
+    ADMIN,
+    MODERATOR
 }

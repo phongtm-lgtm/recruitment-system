@@ -1,7 +1,7 @@
 package fu.se.recruitment_system.service;
 
-import fu.se.recruitment_system.enums.ApplicationStatus;
-import fu.se.recruitment_system.enums.UserRole;
+import fu.se.recruitment_system.model.enums.ApplicationStatus;
+import fu.se.recruitment_system.model.enums.UserRole;
 import fu.se.recruitment_system.repository.ApplicationRepository;
 import fu.se.recruitment_system.repository.JobPostRepository;
 import fu.se.recruitment_system.repository.UserRepository;

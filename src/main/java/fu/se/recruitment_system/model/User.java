@@ -1,7 +1,7 @@
 package fu.se.recruitment_system.model;
 
-import fu.se.recruitment_system.enums.UserRole;
-import fu.se.recruitment_system.enums.UserStatus;
+import fu.se.recruitment_system.model.enums.UserRole;
+import fu.se.recruitment_system.model.enums.UserStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

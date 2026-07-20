@@ -1,7 +1,7 @@
 package fu.se.recruitment_system.service;
 
 import fu.se.recruitment_system.model.User;
-import fu.se.recruitment_system.enums.UserRole;
+import fu.se.recruitment_system.model.enums.UserRole;
 import fu.se.recruitment_system.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

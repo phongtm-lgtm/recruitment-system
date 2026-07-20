@@ -1,4 +1,4 @@
-package fu.se.recruitment_system.enums;
+package fu.se.recruitment_system.model.enums;
 
 public enum VerificationStatus {
     PENDING,

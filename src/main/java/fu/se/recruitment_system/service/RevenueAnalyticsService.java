@@ -1,8 +1,8 @@
 package fu.se.recruitment_system.service;
 
 import fu.se.recruitment_system.model.Transaction;
-import fu.se.recruitment_system.enums.OrderStatus;
-import fu.se.recruitment_system.enums.PaymentStatus;
+import fu.se.recruitment_system.model.enums.OrderStatus;
+import fu.se.recruitment_system.model.enums.PaymentStatus;
 import fu.se.recruitment_system.repository.OrderRepository;
 import fu.se.recruitment_system.repository.ServicePackageRepository;
 import fu.se.recruitment_system.repository.TransactionRepository;

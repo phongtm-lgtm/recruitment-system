@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.repository;
 
-import fu.se.recruitment_system.enums.OrderStatus;
+import fu.se.recruitment_system.model.enums.OrderStatus;
 import fu.se.recruitment_system.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

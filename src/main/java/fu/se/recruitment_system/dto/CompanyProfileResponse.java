@@ -1,5 +1,6 @@
 package fu.se.recruitment_system.dto;
 
+
 import fu.se.recruitment_system.model.enums.VerificationStatus;
 
 import java.util.List;

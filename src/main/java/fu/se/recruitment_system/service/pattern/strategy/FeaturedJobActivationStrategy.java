@@ -1,7 +1,7 @@
 package fu.se.recruitment_system.service.pattern.strategy;
 
 import fu.se.recruitment_system.model.Order;
-import fu.se.recruitment_system.enums.BenefitType;
+import fu.se.recruitment_system.model.enums.BenefitType;
 import fu.se.recruitment_system.service.JobPostService;
 import org.springframework.stereotype.Component;
 

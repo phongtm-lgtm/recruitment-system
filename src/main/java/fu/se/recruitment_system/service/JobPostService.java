@@ -2,7 +2,7 @@ package fu.se.recruitment_system.service;
 
 import fu.se.recruitment_system.dto.JobPostResponse;
 import fu.se.recruitment_system.model.JobPost;
-import fu.se.recruitment_system.enums.JobPostStatus;
+import fu.se.recruitment_system.model.enums.JobPostStatus;
 import fu.se.recruitment_system.repository.JobPostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

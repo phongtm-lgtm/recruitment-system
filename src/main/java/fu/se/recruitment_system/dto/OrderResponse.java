@@ -1,6 +1,6 @@
 package fu.se.recruitment_system.dto;
 
-import fu.se.recruitment_system.enums.OrderStatus;
+import fu.se.recruitment_system.model.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

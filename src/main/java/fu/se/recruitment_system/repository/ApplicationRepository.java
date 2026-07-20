@@ -1,7 +1,7 @@
 package fu.se.recruitment_system.repository;
 
 import fu.se.recruitment_system.model.Application;
-import fu.se.recruitment_system.enums.ApplicationStatus;
+import fu.se.recruitment_system.model.enums.ApplicationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

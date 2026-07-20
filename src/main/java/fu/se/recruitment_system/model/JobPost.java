@@ -49,6 +49,15 @@ public class JobPost {
     @Column(length = 255)
     private String industry;
 
+    @Column(length = 255)
+    private String location;
+
+    @Column(name = "experience_level", length = 100)
+    private String experienceLevel;
+
+    @Column(name = "work_type", length = 100)
+    private String workType;
+
     @Column(name = "job_description", nullable = false, columnDefinition = "TEXT")
     private String jobDescription;
 
@@ -61,8 +70,12 @@ public class JobPost {
     @Column(name = "salary_range", length = 100)
     private String salaryRange;
 
+    @Column(name = "application_deadline")
+    private LocalDateTime applicationDeadline;
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20,
+            columnDefinition = "ENUM('DRAFT','PENDING','ACTIVE','REJECTED','ESCALATED','CLOSED')")
     @ColumnDefault("'DRAFT'")
     private JobPostStatus status = JobPostStatus.DRAFT;
 
@@ -75,6 +88,10 @@ public class JobPost {
 
     @Column(name = "feature_expire_at")
     private LocalDateTime featureExpireAt;
+
+    @Column(name = "view_count", nullable = false)
+    @ColumnDefault("0")
+    private long viewCount;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

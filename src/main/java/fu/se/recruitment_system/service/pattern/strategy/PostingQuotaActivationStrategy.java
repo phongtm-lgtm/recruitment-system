@@ -1,4 +1,4 @@
-package fu.se.recruitment_system.service.strategy;
+package fu.se.recruitment_system.service.pattern.strategy;
 
 import fu.se.recruitment_system.model.OrderQuota;
 import fu.se.recruitment_system.model.Order;
